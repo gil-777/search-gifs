@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild,ElementRef} from '@angular/core';
 import { GifsService } from 'src/app/gifs/services/gifs.service';
 
 @Component({
@@ -7,6 +7,8 @@ import { GifsService } from 'src/app/gifs/services/gifs.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
+  @ViewChild('busqueda')
+  public busquedaInput!: ElementRef<HTMLInputElement>;
 constructor(private GifsService:GifsService){}
 
 public listarBusquedas05():string[]{
@@ -15,5 +17,11 @@ public listarBusquedas05():string[]{
 }
 get listarBusquedas(){
   return this.GifsService.tagHistory;
+ }
+
+ public busqueda():void{
+  const input=this.busquedaInput.nativeElement.value;
+  console.log("valor es : ",input)
+  this.GifsService.searchTag(input);
  }
 }
