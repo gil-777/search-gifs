@@ -7,8 +7,6 @@ import { GifsService } from 'src/app/gifs/services/gifs.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  @ViewChild('busqueda')
-  public busquedaInput!: ElementRef<HTMLInputElement>;
 constructor(private GifsService:GifsService){}
 
 public listarBusquedas05():string[]{
@@ -19,8 +17,8 @@ get listarBusquedas(){
   return this.GifsService.tagHistory;
  }
 
- public busqueda():void{
-  const input=this.busquedaInput.nativeElement.value;
+ public doBusqueda(input:string):void{
+  //const input:string=this.busquedaInput.nativeElement.textContent|| "dbz";
   console.log("valor es : ",input)
   this.GifsService.searchTag(input);
  }
